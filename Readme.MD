@@ -2,7 +2,7 @@
 
 > DevOps | DevSecOps | AIOps | Agentic AI | Cloud Architecture | Web Development
 
-Live site: **https://pawarakash2511.github.io/portfolio**
+Live site: **https://pawarakash2511.github.io/Portfolio**
 
 ---
 
