@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Akash Pawar | DevOps & Cloud Architect</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,400;1,700&display=swap" rel="stylesheet"/>
+<style>
+  :root[data-theme="dark"] {
+    --bg: #090c10;
+    --bg2: #0f1318;
+    --bg3: #151a22;
+    --border: rgba(255,255,255,0.07);
+    --text: #e8edf5;
+    --text2: #8a95a8;
+    --text3: #4a5568;
+    --accent: #00d4ff;
+    --accent2: #7c3aed;
+    --accent3: #10b981;
+    --accent4: #f59e0b;
+    --card: #0f1318;
+    --card-hover: #151a22;
+    --glow: rgba(0,212,255,0.15);
+    --shadow: 0 0 40px rgba(0,212,255,0.08);
+  }
+  :root[data-theme="light"] {
+    --bg: #f4f6fa;
+    --bg2: #ffffff;
+    --bg3: #eef0f6;
+    --border: rgba(0,0,0,0.08);
+    --text: #0f172a;
+    --text2: #475569;
+    --text3: #94a3b8;
+    --accent: #0284c7;
+    --accent2: #7c3aed;
+    --accent3: #059669;
+    --accent4: #d97706;
+    --card: #ffffff;
+    --card-hover: #f8fafc;
+    --glow: rgba(2,132,199,0.1);
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background 0.4s, color 0.4s;
+    overflow-x: hidden;
+  }
+
+  /* GRID BG */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--text);
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--text2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .theme-toggle {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 6px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text2);
+    font-family: 'Inter', sans-serif;
+    align-items: center;
+    gap: 6px;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* SECTIONS */
+  section { position: relative; z-index: 1; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 48px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 80px;
+    align-items: center;
+    width: 100%;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent3);
+    animation: blink 1.5s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    animation: fadeUp 0.8s ease both;
+  }
+  h1 .line2 {
+    color: var(--accent);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(38px, 4.5vw, 60px);
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    color: var(--text2);
+    margin: 20px 0 32px;
+    max-width: 480px;
+    line-height: 1.8;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 36px;
+    animation: fadeUp 0.8s 0.25s ease both;
+  }
+  .stat { display: flex; flex-direction: column; gap: 2px; }
+  .stat-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); }
+
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    animation: fadeUp 0.8s 0.35s ease both;
+  }
+  .btn {
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+  }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); box-shadow: 0 8px 24px var(--glow); }
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text2);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* HERO CARD */
+  .hero-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    animation: fadeUp 0.8s 0.2s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+  .card-title { font-size: 11px; color: var(--text3); letter-spacing: 1px; margin-left: 4px; }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .tech-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: var(--bg3);
+    border-radius: 6px;
+    font-size: 11px;
+    color: var(--text2);
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .tech-item:hover { border-color: var(--accent); color: var(--text); }
+  .tech-icon { font-size: 14px; }
+
+  /* SECTIONS COMMON */
+  .section-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 48px;
+  }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 48px;
+    color: var(--text);
+  }
+  .section-title em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--text2);
+    font-weight: 700;
+  }
+
+  /* EXPERTISE */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .exp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+  .exp-card:hover {
+    border-color: var(--card-accent, var(--accent));
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+  }
+  .exp-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-accent, var(--accent));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .exp-card:hover::after { transform: scaleX(1); }
+  .exp-icon { font-size: 28px; margin-bottom: 14px; }
+  .exp-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .exp-desc { font-size: 11px; color: var(--text2); line-height: 1.7; }
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 14px;
+  }
+  .tag {
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text2);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .project-github {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text3);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    margin-top: 4px;
+    transition: all 0.2s;
+    width: fit-content;
+  }
+  .project-github:hover { border-color: var(--accent); color: var(--accent); }
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px var(--glow);
+  }
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .project-icon {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+  }
+  .project-badge {
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+  .badge-featured { background: rgba(0,212,255,0.1); color: var(--accent); border: 1px solid rgba(0,212,255,0.2); }
+  .badge-ai { background: rgba(124,58,237,0.1); color: var(--accent2); border: 1px solid rgba(124,58,237,0.2); }
+  .badge-sec { background: rgba(16,185,129,0.1); color: var(--accent3); border: 1px solid rgba(16,185,129,0.2); }
+  .badge-web { background: rgba(245,158,11,0.1); color: var(--accent4); border: 1px solid rgba(245,158,11,0.2); }
+
+  .project-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text);
+  }
+  .project-desc { font-size: 12px; color: var(--text2); line-height: 1.7; }
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: auto;
+  }
+
+  /* EXPERIENCE */
+  .exp-timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .tl-left {}
+  .tl-company {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .tl-period {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .tl-role {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .tl-points {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .tl-point {
+    display: flex;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+  .tl-point::before {
+    content: '→';
+    color: var(--accent);
+    flex-shrink: 0;
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
+  /* CERTS */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s;
+  }
+  .cert-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+  .cert-icon {
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .cert-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .cert-org { font-size: 10px; color: var(--text3); letter-spacing: 0.5px; }
+  .cert-new {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(16,185,129,0.15);
+    color: var(--accent3);
+    border: 1px solid rgba(16,185,129,0.3);
+    margin-top: 4px;
+  }
+
+  /* SKILLS */
+  .skills-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .skill-group-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .pill {
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .pill:hover { border-color: var(--accent); color: var(--text); background: var(--card); }
+
+  /* CONTACT */
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .contact-left {}
+  .contact-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .contact-tagline em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .contact-sub { font-size: 12px; color: var(--text2); line-height: 1.8; margin-bottom: 28px; }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--text2);
+    text-decoration: none;
+    padding: 12px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+  .contact-link-icon { font-size: 16px; }
+
+  .upwork-cta {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .upwork-cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #14a800, #6fda44);
+  }
+  .upwork-logo {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: #14a800;
+    margin-bottom: 12px;
+  }
+  .upwork-text { font-size: 12px; color: var(--text2); line-height: 1.8; margin-bottom: 20px; }
+  .upwork-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #14a800;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+    border: none;
+    cursor: pointer;
+  }
+  .upwork-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .footer-left { font-size: 11px; color: var(--text3); }
+  .footer-right { font-size: 11px; color: var(--text3); }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 0 48px;
+    max-width: calc(1200px - 96px);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* SCROLL ANIMATION */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 20px 60px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .expertise-grid { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .section-wrap { padding: 60px 20px; }
+    .certs-grid { grid-template-columns: 1fr 1fr; }
+    .skills-wrap { grid-template-columns: 1fr; }
+    .contact-wrap { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+    footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+  @media (max-width: 560px) {
+    .expertise-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Akash<span>.</span>Pawar</div>
+
+  <ul class="nav-links">
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">
+    <span id="themeIcon">☀️</span> Light
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Available for Freelance · Upwork</div>
+      <h1>
+        Akash Pawar<br/>
+        <span class="line2">Cloud, DevOps & Agentic AI</span>
+      </h1>
+      <p class="hero-sub">
+        Senior DevOps Engineer with 6+ years building secure, automated cloud infrastructure. 
+        Primary focus on DevOps, DevSecOps & AIOps — extended into Agentic AI and Web Development for end-to-end enterprise solutions on Azure and AWS.
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">6<span>+</span></div>
+          <div class="stat-label">Years Exp.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Specializations</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Certifications</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">9</div>
+          <div class="stat-label">Projects</div>
+        </div>
+      </div>
+      <div class="hero-cta">
+        <a href="https://www.upwork.com/freelancers/~0106a781fa02c837ae?mp_source=share" target="_blank" class="btn btn-primary">Hire on Upwork</a>
+        <a href="#projects" class="btn btn-outline">View Projects</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="card-header">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="card-title">// tech_stack.yaml</span>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-item"><span class="tech-icon">☁️</span> Microsoft Azure</div>
+        <div class="tech-item"><span class="tech-icon">🏗️</span> Terraform / Bicep</div>
+        <div class="tech-item"><span class="tech-icon">⚙️</span> GitHub Actions</div>
+        <div class="tech-item"><span class="tech-icon">🐳</span> Kubernetes</div>
+        <div class="tech-item"><span class="tech-icon">🤖</span> Azure OpenAI</div>
+        <div class="tech-item"><span class="tech-icon">🔐</span> Trivy / Veracode</div>
+        <div class="tech-item"><span class="tech-icon">📊</span> Prometheus/Grafana</div>
+        <div class="tech-item"><span class="tech-icon">🐍</span> Python / FastAPI</div>
+        <div class="tech-item"><span class="tech-icon">🔗</span> MCP Server</div>
+        <div class="tech-item"><span class="tech-icon">🚀</span> Azure AI Foundry</div>
+        <div class="tech-item"><span class="tech-icon">📦</span> Docker / Packer</div>
+        <div class="tech-item"><span class="tech-icon">🤝</span> GitHub Copilot</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-wrap">
+    <p class="section-label reveal">What I Do</p>
+    <h2 class="section-title reveal">Core <em>Specializations</em></h2>
+    <div class="expertise-grid" style="grid-template-columns: repeat(3, 1fr);">
+
+      <!-- ROW 1: PRIMARY -->
+      <div class="exp-card reveal" style="--card-accent: #00d4ff;">
+        <div class="exp-icon">☁️</div>
+        <div class="exp-title">DevOps & Cloud</div>
+        <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Primary Focus</div>
+        <div class="exp-desc">End-to-end CI/CD pipelines, infrastructure automation, and cloud-native architecture on Azure and AWS. IaC with Terraform, Bicep, and ARM Templates.</div>
+        <div class="exp-tags">
+          <span class="tag">Azure DevOps</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">Jenkins</span>
+          <span class="tag">Terraform</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Packer</span>
+        </div>
+      </div>
+
+      <div class="exp-card reveal" style="--card-accent: #10b981;">
+        <div class="exp-icon">🔐</div>
+        <div class="exp-title">DevSecOps</div>
+        <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent3);margin-bottom:8px;">Primary Focus</div>
+        <div class="exp-desc">Embedding security into every stage of the SDLC — SAST, DAST, container scanning, secret detection, and compliance automation at pipeline level.</div>
+        <div class="exp-tags">
+          <span class="tag">SonarQube</span>
+          <span class="tag">Trivy</span>
+          <span class="tag">Veracode</span>
+          <span class="tag">OWASP</span>
+          <span class="tag">Security Gates</span>
+          <span class="tag">JFrog</span>
+        </div>
+      </div>
+
+      <div class="exp-card reveal" style="--card-accent: #f97316;">
+        <div class="exp-icon">📡</div>
+        <div class="exp-title">AIOps</div>
+        <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#f97316;margin-bottom:8px;">Primary Focus</div>
+        <div class="exp-desc">AI-driven monitoring, intelligent alerting, and automated incident response. Using ML to detect anomalies, predict failures, and reduce MTTR across cloud infrastructure.</div>
+        <div class="exp-tags">
+          <span class="tag">Prometheus</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">Azure Monitor</span>
+          <span class="tag">Kibana</span>
+          <span class="tag">Zabbix</span>
+          <span class="tag">AI Alerting</span>
+        </div>
+      </div>
+
+      <!-- ROW 2: SECONDARY -->
+      <div class="exp-card reveal" style="--card-accent: #7c3aed;">
+        <div class="exp-icon">🤖</div>
+        <div class="exp-title">Agentic AI</div>
+        <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px;">Secondary Focus</div>
+        <div class="exp-desc">Building AI-powered infrastructure platforms using Azure OpenAI, MCP Servers, and multi-agent workflows that automate complex enterprise provisioning tasks.</div>
+        <div class="exp-tags">
+          <span class="tag">Azure OpenAI</span>
+          <span class="tag">GPT-4o</span>
+          <span class="tag">MCP Server</span>
+          <span class="tag">Azure AI Foundry</span>
+          <span class="tag">n8n</span>
+          <span class="tag">GitHub Copilot</span>
+        </div>
+      </div>
+
+      <div class="exp-card reveal" style="--card-accent: #ef4444;">
+        <div class="exp-icon">🛡️</div>
+        <div class="exp-title">Cloud Security</div>
+        <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#ef4444;margin-bottom:8px;">Secondary Focus</div>
+        <div class="exp-desc">Zero-trust architecture, identity & access management, network security, and compliance frameworks for Azure cloud workloads and containerized environments.</div>
+        <div class="exp-tags">
+          <span class="tag">Azure Security Center</span>
+          <span class="tag">RBAC</span>
+          <span class="tag">Zero Trust</span>
+          <span class="tag">Key Vault</span>
+          <span class="tag">Network Policies</span>
+        </div>
+      </div>
+
+      <div class="exp-card reveal" style="--card-accent: #f59e0b;">
+        <div class="exp-icon">🌐</div>
+        <div class="exp-title">Web Development</div>
+        <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent4);margin-bottom:8px;">Additional Skill</div>
+        <div class="exp-desc">Building REST APIs, automation dashboards, and internal developer portals — from FastAPI backends to Backstage-powered developer experience platforms.</div>
+        <div class="exp-tags">
+          <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Backstage</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">Azure Logic Apps</span>
+          <span class="tag">React</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-wrap">
+    <p class="section-label reveal">Portfolio</p>
+    <h2 class="section-title reveal">Featured <em>Projects</em></h2>
+    <div class="projects-grid">
+
+      <!-- DEVOPS PRIMARY -->
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-icon">🏗️</div>
+          <span class="project-badge badge-featured">DevOps</span>
+        </div>
+        <div class="project-name">Azure IaC Automation Suite</div>
+        <div class="project-desc">Comprehensive Terraform module library for Azure — provisioning VNets, AKS clusters, storage accounts, and golden VM images using Packer. Reduced provisioning time from days to minutes with standardized, reusable templates.</div>
+        <div class="project-stack">
+          <span class="tag">Terraform</span>
+          <span class="tag">Bicep</span>
+          <span class="tag">ARM Templates</span>
+          <span class="tag">Packer</span>
+          <span class="tag">Azure</span>
+        </div>
+        <a href="https://github.com/pawarakash2511" target="_blank" class="project-github">⭐ View on GitHub</a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-icon">☸️</div>
+          <span class="project-badge badge-featured">DevOps</span>
+        </div>
+        <div class="project-name">Kubernetes Platform Engineering</div>
+        <div class="project-desc">Designed and managed production AKS clusters with high availability, disaster recovery strategies, and full monitoring stack. Implemented resource optimization policies that significantly reduced monthly cloud spend.</div>
+        <div class="project-stack">
+          <span class="tag">AKS</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">Prometheus</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">Helm</span>
+        </div>
+        <a href="https://github.com/pawarakash2511" target="_blank" class="project-github">⭐ View on GitHub</a>
+      </div>
+
+      <!-- DEVSECOPS PRIMARY -->
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-icon">🔐</div>
+          <span class="project-badge badge-sec">DevSecOps</span>
+        </div>
+        <div class="project-name">Secure CI/CD Pipeline Framework</div>
+        <div class="project-desc">Built a security-first pipeline framework integrating SAST, container image scanning, and secret detection gates. Reduced vulnerabilities reaching production by enforcing automated quality and security gates at every stage.</div>
+        <div class="project-stack">
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">SonarQube</span>
+          <span class="tag">Trivy</span>
+          <span class="tag">Veracode</span>
+          <span class="tag">Azure DevOps</span>
+        </div>
+        <a href="https://github.com/pawarakash2511" target="_blank" class="project-github">⭐ View on GitHub</a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-icon">🛡️</div>
+          <span class="project-badge badge-sec">Security</span>
+        </div>
+        <div class="project-name">Zero-Trust Cloud Security Architecture</div>
+        <div class="project-desc">Designed and implemented a zero-trust security model for Azure cloud workloads — enforcing RBAC, Key Vault secrets management, network policies on AKS, and continuous compliance scanning across environments.</div>
+        <div class="project-stack">
+          <span class="tag">Azure Security Center</span>
+          <span class="tag">Key Vault</span>
+          <span class="tag">RBAC</span>
+          <span class="tag">Network Policies</span>
+          <span class="tag">Defender for Cloud</span>
+        </div>
+        <a href="https://github.com/pawarakash2511" target="_blank" class="project-github">⭐ View on GitHub</a>
+      </div>
+
+      <!-- AIOPS -->
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-icon">📡</div>
+          <span class="project-badge" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.3);">AIOps</span>
+        </div>
+        <div class="project-name">Intelligent Monitoring & Alerting Platform</div>
+        <div class="project-desc">Built an AI-enhanced observability platform using Prometheus and Grafana with intelligent alert correlation and noise reduction. Automated incident triage reduced MTTR by eliminating manual alert fatigue across production systems.</div>
+        <div class="project-stack">
+          <span class="tag">Prometheus</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">Azure Monitor</span>
+          <span class="tag">Kibana</span>
+          <span class="tag">AI Alerting</span>
+          <span class="tag">Python</span>
+        </div>
+        <a href="https://github.com/pawarakash2511" target="_blank" class="project-github">⭐ View on GitHub</a>
+      </div>
+
+      <!-- AGENTIC AI -->
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-icon">🤖</div>
+          <span class="project-badge badge-ai">Agentic AI</span>
+        </div>
+        <div class="project-name">AI-Powered Infrastructure Management Platform</div>
+        <div class="project-desc">Built an AI-powered cloud infrastructure management platform enabling natural language provisioning of resources. Engineers describe what they need in plain English; the platform provisions via Terraform automatically.</div>
+        <div class="project-stack">
+          <span class="tag">Azure OpenAI GPT-4o</span>
+          <span class="tag">MCP Server</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Terraform</span>
+          <span class="tag">Backstage</span>
+          <span class="tag">Azure AI Foundry</span>
+        </div>
+        <a href="https://github.com/pawarakash2511" target="_blank" class="project-github">⭐ View on GitHub</a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-icon">⚡</div>
+          <span class="project-badge badge-ai">Agentic AI</span>
+        </div>
+        <div class="project-name">GitHub Copilot Enterprise Enablement</div>
+        <div class="project-desc">Led GitHub Copilot adoption for development teams — covering security-first implementation, prompt engineering best practices, and integration with existing DevOps toolchain and Azure infrastructure workflows.</div>
+        <div class="project-stack">
+          <span class="tag">GitHub Copilot</span>
+          <span class="tag">Azure DevOps</span>
+          <span class="tag">Security Policy</span>
+          <span class="tag">Developer Enablement</span>
+        </div>
+        <a href="https://github.com/pawarakash2511" target="_blank" class="project-github">⭐ View on GitHub</a>
+      </div>
+
+      <!-- WEB DEV -->
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-icon">🌐</div>
+          <span class="project-badge badge-web">Web Dev</span>
+        </div>
+        <div class="project-name">Developer Self-Service Portal</div>
+        <div class="project-desc">Built a Backstage-powered internal developer portal integrating service catalog, infrastructure templates, and CI/CD visibility. Enabled teams to self-provision cloud resources through a unified developer experience platform.</div>
+        <div class="project-stack">
+          <span class="tag">Backstage</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Azure</span>
+          <span class="tag">Terraform</span>
+          <span class="tag">React</span>
+        </div>
+        <a href="https://github.com/pawarakash2511" target="_blank" class="project-github">⭐ View on GitHub</a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-icon">⚙️</div>
+          <span class="project-badge badge-web">Web Dev</span>
+        </div>
+        <div class="project-name">DevOps Automation Dashboard</div>
+        <div class="project-desc">Built a Python/FastAPI-powered automation dashboard providing real-time pipeline status, deployment tracking, and release management visibility. Integrated with Azure Logic Apps for business process workflow automation.</div>
+        <div class="project-stack">
+          <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">Azure Logic Apps</span>
+          <span class="tag">Azure DevOps API</span>
+        </div>
+        <a href="https://github.com/pawarakash2511" target="_blank" class="project-github">⭐ View on GitHub</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-wrap">
+    <p class="section-label reveal">Career</p>
+    <h2 class="section-title reveal">Work <em>Experience</em></h2>
+    <div class="exp-timeline">
+
+      <div class="timeline-item reveal">
+        <div class="tl-left">
+          <div class="tl-company">Upwork — Freelance</div>
+          <div class="tl-period">Oct 2024 – Present</div>
+        </div>
+        <div>
+          <div class="tl-role">Senior DevOps & Cloud Architect</div>
+          <div class="tl-points">
+            <div class="tl-point">End-to-end CI/CD implementation using GitHub Actions, Azure DevOps, and Jenkins for global clients</div>
+            <div class="tl-point">Infrastructure automation using Terraform, ARM Templates, and Bicep for Azure & AWS services</div>
+            <div class="tl-point">Golden image creation with Packer for standardized Azure VM deployments</div>
+            <div class="tl-point">AKS cluster management with focus on high availability and secure containerized workloads</div>
+            <div class="tl-point">Disaster recovery and HA strategies ensuring business continuity and minimal downtime</div>
+            <div class="tl-point">Monitoring with Prometheus & Grafana for real-time metrics and proactive issue detection</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="tl-left">
+          <div class="tl-company">Enterprise IT firm</div>
+          <div class="tl-period">Nov 2021 – Oct 2024 · 3 yrs</div>
+        </div>
+        <div>
+          <div class="tl-role">DevOps Engineer</div>
+          <div class="tl-points">
+            <div class="tl-point">Implemented end-to-end CI/CD solution for PLM (Windchill) customers from scratch</div>
+            <div class="tl-point">Designed effective branching strategies aligned with DevOps best practices</div>
+            <div class="tl-point">Led Release Management lifecycle — scheduling, coordination, and Go-Live activities</div>
+            <div class="tl-point">Primary communication channel for cross-functional teams on plans, timelines, and requirements</div>
+            <div class="tl-point">Proactively identified and mitigated risks to maintain release scope and quality</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="tl-left">
+          <div class="tl-company">Global IT Consultancy</div>
+          <div class="tl-period">Sept 2019 – Nov 2021 · 2+ yrs</div>
+        </div>
+        <div>
+          <div class="tl-role">DevOps Engineer</div>
+          <div class="tl-points">
+            <div class="tl-point">Designed and presented CI/CD POCs using Azure DevOps, Jenkins to stakeholders</div>
+            <div class="tl-point">Implemented DevOps toolchain: Terraform, Docker, Ansible, SonarQube, JFrog Artifactory</div>
+            <div class="tl-point">Created declarative and scripted Jenkins pipelines; Ansible playbooks for infrastructure provisioning</div>
+            <div class="tl-point">Managed deployment teams for critical releases and automated processes using CI/CD tools</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-wrap">
+    <p class="section-label reveal">Credentials</p>
+    <h2 class="section-title reveal">Certifications <em>& Badges</em></h2>
+    <div class="certs-grid">
+
+      <div class="cert-card reveal">
+        <div class="cert-icon">🤖</div>
+        <div>
+          <div class="cert-name">GitHub Copilot Certification</div>
+          <div class="cert-org">GitHub · 300-level</div>
+          <div class="cert-new">✦ Recently Earned</div>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-icon">☸️</div>
+        <div>
+          <div class="cert-name">Certified Kubernetes Administrator</div>
+          <div class="cert-org">CNCF · CKA</div>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-icon">🔧</div>
+        <div>
+          <div class="cert-name">Terraform Associate (003)</div>
+          <div class="cert-org">HashiCorp</div>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-icon">⚙️</div>
+        <div>
+          <div class="cert-name">AZ-400 Azure DevOps Engineer</div>
+          <div class="cert-org">Microsoft Azure</div>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-icon">☁️</div>
+        <div>
+          <div class="cert-name">AZ-900 Azure Fundamentals</div>
+          <div class="cert-org">Microsoft Azure</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-wrap">
+    <p class="section-label reveal">Toolkit</p>
+    <h2 class="section-title reveal">Skills <em>& Tools</em></h2>
+    <div class="skills-wrap">
+      <div class="reveal">
+        <div class="skill-group-title">CI/CD & DevOps</div>
+        <div class="skill-pills">
+          <span class="pill">GitHub Actions</span>
+          <span class="pill">Azure DevOps</span>
+          <span class="pill">Jenkins</span>
+          <span class="pill">Git</span>
+          <span class="pill">Azure Repos</span>
+          <span class="pill">Maven</span>
+          <span class="pill">MSBuild</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="skill-group-title">Cloud & IaC</div>
+        <div class="skill-pills">
+          <span class="pill">Microsoft Azure</span>
+          <span class="pill">AWS</span>
+          <span class="pill">Terraform</span>
+          <span class="pill">Bicep</span>
+          <span class="pill">ARM Templates</span>
+          <span class="pill">Packer</span>
+          <span class="pill">Azure Logic Apps</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="skill-group-title">Containers & Orchestration</div>
+        <div class="skill-pills">
+          <span class="pill">Kubernetes (AKS)</span>
+          <span class="pill">Docker</span>
+          <span class="pill">Helm</span>
+          <span class="pill">Ansible</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="skill-group-title">Security & Quality</div>
+        <div class="skill-pills">
+          <span class="pill">SonarQube</span>
+          <span class="pill">Trivy</span>
+          <span class="pill">Veracode</span>
+          <span class="pill">JFrog Artifactory</span>
+          <span class="pill">Nexus</span>
+          <span class="pill">Azure Artifacts</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="skill-group-title">AI & Agentic</div>
+        <div class="skill-pills">
+          <span class="pill">Azure OpenAI GPT-4o</span>
+          <span class="pill">MCP Server</span>
+          <span class="pill">Azure AI Foundry</span>
+          <span class="pill">GitHub Copilot</span>
+          <span class="pill">n8n</span>
+          <span class="pill">Agentic AI</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="skill-group-title">Monitoring & Scripting</div>
+        <div class="skill-pills">
+          <span class="pill">Prometheus</span>
+          <span class="pill">Grafana</span>
+          <span class="pill">Kibana</span>
+          <span class="pill">Zabbix</span>
+          <span class="pill">Python</span>
+          <span class="pill">Shell Scripting</span>
+          <span class="pill">PowerShell</span>
+          <span class="pill">FastAPI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-wrap">
+    <p class="section-label reveal">Get In Touch</p>
+    <div class="contact-wrap">
+      <div class="contact-left reveal">
+        <h2 class="contact-tagline">Let's build something <em>exceptional</em> together.</h2>
+        <p class="contact-sub">Open to freelance projects on Upwork — DevOps, Cloud Architecture, SecDevOps pipelines, Agentic AI platforms, and more. Based in Pune, India. Available for remote engagements globally.</p>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/akash-pawar-038919408" target="_blank" class="contact-link">
+            <span class="contact-link-icon">💼</span>
+            linkedin.com/in/akash-pawar-038919408
+          </a>
+          <a href="https://github.com/pawarakash2511" target="_blank" class="contact-link">
+            <span class="contact-link-icon">🐙</span>
+            github.com/pawarakash2511
+          </a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="upwork-cta">
+          <div class="upwork-logo">Upwork</div>
+          <div class="upwork-text">
+            Looking for a senior DevOps engineer who ships? I bring 6+ years of Azure, Terraform, Kubernetes, and CI/CD expertise — now expanded into Agentic AI and SecDevOps. Let's discuss your project.
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <a href="https://www.upwork.com/freelancers/~0106a781fa02c837ae?mp_source=share" target="_blank" class="upwork-btn">→ Hire Me on Upwork</a>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;letter-spacing:0.5px;">Pune, Maharashtra · Remote · Global</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">© 2025 Akash Pawar · DevOps & Cloud Portfolio</div>
+  <div class="footer-right">Pune, Maharashtra, India</div>
+</footer>
+
+<script>
+  // Theme toggle
+  function toggleTheme() {
+    const html = document.documentElement;
+    const btn = document.getElementById('themeBtn');
+    const icon = document.getElementById('themeIcon');
+    if (html.getAttribute('data-theme') === 'dark') {
+      html.setAttribute('data-theme', 'light');
+      btn.innerHTML = '<span>🌙</span> Dark';
+    } else {
+      html.setAttribute('data-theme', 'dark');
+      btn.innerHTML = '<span>☀️</span> Light';
+    }
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 60 * (Array.from(entry.target.parentElement.children).indexOf(entry.target)));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
