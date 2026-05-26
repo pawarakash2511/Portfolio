@@ -69,5 +69,4 @@ Every push to `main` auto-deploys via the workflow.
 ## 🔗 Links
 
 - [Upwork Profile](https://www.upwork.com/freelancers/~0106a781fa02c837ae?mp_source=share)
-- [LinkedIn](https://www.linkedin.com/in/akash-pawar-038919408)
 - [GitHub](https://github.com/pawarakash2511)
